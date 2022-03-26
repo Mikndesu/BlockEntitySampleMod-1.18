@@ -3,7 +3,6 @@ package com.github.mikn.block_entity_sample;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.*;
-import net.minecraft.world.entity.ItemBasedSteering;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -39,7 +38,7 @@ public class CustomBlock extends Block implements EntityBlock {
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
         if(blockEntity instanceof CustomBlockEntity) {
             Component name = ((Nameable)blockEntity).getDisplayName();
-            return new SimpleMenuProvider((id, inventory, player) -> new CustomBlockContainer(id, inventory, ContainerLevelAccess.create(level, blockPos)));
+            return new SimpleMenuProvider((id, inventory, player) -> new CustomBlockContainer(id, inventory, ContainerLevelAccess.create(level, blockPos)), name);
         } else {
             return null;
         }
