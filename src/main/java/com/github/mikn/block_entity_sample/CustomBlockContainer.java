@@ -53,8 +53,7 @@ public class CustomBlockContainer extends AbstractContainerMenu {
                 return 64;
             }
             public void onTake(Player player, ItemStack itemStack) {
-                CustomBlockContainer.this.inputInventory.setItem(0, new ItemStack(Items.DIAMOND));
-                CustomBlockContainer.this.inputInventory.setItem(1, ItemStack.EMPTY);
+                CustomBlockContainer.this.inputInventory.setItem(0, ItemStack.EMPTY);
             }
         });
         for(int i = 0; i < 3; ++i) {
@@ -76,11 +75,13 @@ public class CustomBlockContainer extends AbstractContainerMenu {
 
     private void updateRecipeOutput() {
         ItemStack seed = this.inputInventory.getItem(0);
+        int numbers = seed.getCount();
         boolean ready = !seed.isEmpty();
         if (!ready) {
             this.outputInventory.setItem(0, ItemStack.EMPTY);
         } else {
             ItemStack itemStack = new ItemStack(Items.MELON_SEEDS);
+            itemStack.setCount(numbers);
             this.outputInventory.setItem(0, itemStack);
         }
         this.broadcastChanges();
